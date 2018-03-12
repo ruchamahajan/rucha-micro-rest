@@ -8,12 +8,30 @@ public class Student {
 
 	private String firstName;
 	private String lastName;
-	private String rollNo;
+	private Integer rollNo;
 	private String branchName;
 	private Date dateOfBirth;
 	private Date registrationDate;
 	private String imageUrl;
+	private String email;
+	private Integer semester;
 	
+	public Integer getSemester() {
+		return semester;
+	}
+
+	public void setSemester(Integer semester) {
+		this.semester = semester;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	private Set<Course> coursesEnrolled;
 	
 	private Map<Course, Double> coursesAndMarks;
@@ -35,11 +53,11 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public String getRollNo() {
+	public Integer getRollNo() {
 		return rollNo;
 	}
 
-	public void setRollNo(String rollNo) {
+	public void setRollNo(Integer rollNo) {
 		this.rollNo = rollNo;
 	}
 
