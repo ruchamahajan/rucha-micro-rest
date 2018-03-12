@@ -47,6 +47,9 @@ public class StudentServicesControllerTests {
 		
 		if(students != null && students.size() > 0) {
 			System.out.println("Found " + students.size() + " records");
+			for (Student s : students) {
+				System.out.println(s);
+			}
 		} else {
 			System.out.println("Failed to get students");
 		}

@@ -30,8 +30,8 @@ public class StudentServicesController {
 			Boolean status = stmt.execute("select * from students");
 			if(status) {
 				ResultSet result = stmt.getResultSet(); 
-				Student stud = new Student();
 				while(result.next()) {
+					Student stud = new Student();
 					stud.setRollNo(result.getInt(1));
 					stud.setFirstName(result.getString(2));
 					stud.setLastName(result.getString(3));

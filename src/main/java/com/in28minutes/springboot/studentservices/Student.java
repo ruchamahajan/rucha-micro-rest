@@ -109,4 +109,11 @@ public class Student {
 		this.coursesAndMarks = coursesAndMarks;
 	}
 
+	@Override
+	public String toString() {
+		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", rollNo=" + rollNo + ", branchName="
+				+ branchName + ", dateOfBirth=" + dateOfBirth + ", registrationDate=" + registrationDate + ", imageUrl="
+				+ imageUrl + ", email=" + email + ", semester=" + semester + "]";
+	}
+
 }
