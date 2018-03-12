@@ -4,11 +4,19 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Student {
 
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer rollNo;
 	private String firstName;
 	private String lastName;
-	private Integer rollNo;
 	private String branchName;
 	private Date dateOfBirth;
 	private Date registrationDate;
