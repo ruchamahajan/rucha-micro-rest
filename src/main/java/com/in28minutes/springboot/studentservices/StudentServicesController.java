@@ -19,19 +19,10 @@ public class StudentServicesController {
 	@ResponseBody
 	public List<Student> getStudents() {
 
-		Connection conn = null;
+		Connection conn = getConnection();
 		
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sudentschema?profileSQL=true\r\n", "root", "root123");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		// Connect to sql db
-		// get list of students using connection
-		// hibernate can be used here
-		// 
+		// TODO spring hibernate
+		
 		List<Student> students = new ArrayList<Student>();
 		Statement stmt;
 		try {
@@ -58,5 +49,28 @@ public class StudentServicesController {
 			e.printStackTrace();
 		}
 		return students;
+	}
+	
+	public Connection getConnection() {
+		Connection conn = null;
+		String server = "localhost";
+		String port = "3306";
+		String database = "sudentschema";
+		String user = "root";
+		String pwd = "root123";
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://" 
+												+ server 
+												+ "" 
+												+ port 
+												+ "/" 
+												+ database 
+												+ "?profileSQL=true\r\n",
+												user, pwd);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return conn;
 	}
 }
