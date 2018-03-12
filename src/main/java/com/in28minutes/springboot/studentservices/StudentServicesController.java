@@ -32,15 +32,15 @@ public class StudentServicesController {
 				ResultSet result = stmt.getResultSet(); 
 				Student stud = new Student();
 				while(result.next()) {
-					stud.setRollNo(result.getInt(0));
-					stud.setFirstName(result.getString(1));
-					stud.setLastName(result.getString(2));
-					stud.setBranchName(result.getString(3));
-					stud.setImageUrl(result.getString(4));
-					stud.setDateOfBirth(result.getDate(5));
-					stud.setRegistrationDate(result.getDate(6));
-					stud.setSemester(result.getInt(7));
-					stud.setEmail(result.getString(8));
+					stud.setRollNo(result.getInt(1));
+					stud.setFirstName(result.getString(2));
+					stud.setLastName(result.getString(3));
+					stud.setBranchName(result.getString(4));
+					stud.setImageUrl(result.getString(5));
+					stud.setDateOfBirth(result.getDate(6));
+					stud.setRegistrationDate(result.getDate(7));
+					stud.setSemester(result.getInt(8));
+					stud.setEmail(result.getString(9));
 					students.add(stud);
 				}
 			}
@@ -58,15 +58,9 @@ public class StudentServicesController {
 		String database = "sudentschema";
 		String user = "root";
 		String pwd = "root123";
+		String url = "jdbc:mysql://" + server + ":"  + port + "/" + database ; // + "?profileSQL=true\r\n"
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://" 
-												+ server 
-												+ "" 
-												+ port 
-												+ "/" 
-												+ database 
-												+ "?profileSQL=true\r\n",
-												user, pwd);
+			conn = DriverManager.getConnection( url,user, pwd);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -74,3 +68,5 @@ public class StudentServicesController {
 		return conn;
 	}
 }
+
+// TODO write testcase to test jdbc connection
