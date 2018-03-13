@@ -1,9 +1,14 @@
 package com.in28minutes.springboot.studentservices;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Course {
 
-	private String courseName;
+	@Id
 	private Integer courseId;
+	private String courseName;
 	private Integer courseCredit;
 	private Double courseFees;
 	private String branchName;

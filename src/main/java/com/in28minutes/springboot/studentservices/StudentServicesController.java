@@ -19,42 +19,42 @@ public class StudentServicesController {
 	@Autowired 
 	StudentService studentService;
 
-	
-    @PutMapping("/student/")
-    @ResponseBody
-    public ResponseEntity<String> addStudent(@RequestBody Student newStudent) {
-    		Boolean status = studentService.addStudent(newStudent);
-    		
-    		if (status) {
-    			return ResponseEntity.status(HttpStatus.CREATED).build();
-    		} else {
-    			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    		}
-    }
-	
+
+	@PutMapping("/student/")
+	@ResponseBody
+	public ResponseEntity<String> addStudent(@RequestBody Student newStudent) {
+		Boolean status = studentService.addStudent(newStudent);
+
+		if (status) {
+			return ResponseEntity.status(HttpStatus.CREATED).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
 	@GetMapping("/students")
 	@ResponseBody
 	public List<Student> getStudents() {
 
 		return studentService.getStudents();
 	}
-	
+
 	@PostMapping("/student/{rollNo}")
 	public ResponseEntity<String> updateStudent(
 			@PathVariable Integer rollNo, @RequestBody Student newStudent) {
-		
+
 		Boolean status = studentService.updateStudent(rollNo, newStudent);
 		if (status) {
 			return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-  	}
-	
+	}
+
 	@DeleteMapping("/student/{rollNo}")
 	public ResponseEntity<String> deleteStudent(@PathVariable Integer rollNo) {
 		Boolean status = studentService.deleteStudent(rollNo);
-		
+
 		if (status) {
 			return ResponseEntity.status(HttpStatus.OK).build();
 		} else {
@@ -62,6 +62,6 @@ public class StudentServicesController {
 		}
 
 	}
-	
+
 }
 
