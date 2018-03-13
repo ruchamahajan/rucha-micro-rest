@@ -12,25 +12,25 @@ public class StudentService {
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	List<Student> getStudents() {
-		List<Student> students = null;
+	List<Students> getStudents() {
+		List<Students> students = null;
 		Query query = entityManager.createNamedQuery(
-				"query_find_all_users", Student.class);
+				"query_find_all_users", Students.class);
 		students = query.getResultList();
 		return students;
 	}
 
-	Student getStudent(Integer rollNo) {
-		Student stu = entityManager.find(Student.class, rollNo);
+	Students getStudent(Integer rollNo) {
+		Students stu = entityManager.find(Students.class, rollNo);
 		return stu;
 	}
 
-	Boolean updateStudent(Integer rollNo, Student newStudent) {
+	Boolean updateStudent(Integer rollNo, Students newStudent) {
 		entityManager.persist(newStudent);
 		return true;
 	}
 
-	Boolean addStudent(Student newStudent) {
+	Boolean addStudent(Students newStudent) {
 
 		entityManager.persist(newStudent);
 
@@ -38,7 +38,7 @@ public class StudentService {
 	}
 
 	Boolean deleteStudent(Integer rollNo) {
-		Student stu = entityManager.find(Student.class, rollNo);
+		Students stu = entityManager.find(Students.class, rollNo);
 		entityManager.remove(stu);
 		return true;
 	}

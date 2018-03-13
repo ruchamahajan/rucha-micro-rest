@@ -1,8 +1,6 @@
 package com.in28minutes.springboot.studentservices;
 
 import java.util.Date;
-import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,40 +8,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Student {
+public class Students {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer rollNo;
 	private String firstName;
 	private String lastName;
 	private String branchName;
+	private String imageUrl;
 	private Date dateOfBirth;
 	private Date registrationDate;
-	private String imageUrl;
-	private String email;
-	private Integer semester;
-	
+	private Integer currentSemester;
+	private String emailId;
+
 	public Integer getSemester() {
-		return semester;
+		return currentSemester;
 	}
 
 	public void setSemester(Integer semester) {
-		this.semester = semester;
+		this.currentSemester = semester;
 	}
 
 	public String getEmail() {
-		return email;
+		return emailId;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.emailId = email;
 	}
-
-	private Set<Course> coursesEnrolled;
-	
-	private Map<Course, Double> coursesAndMarks;
-
 
 	public String getFirstName() {
 		return firstName;
@@ -101,27 +94,11 @@ public class Student {
 		this.imageUrl = imageUrl;
 	}
 
-	public Set<Course> getCoursesEnrolled() {
-		return coursesEnrolled;
-	}
-
-	public void setCoursesEnrolled(Set<Course> coursesEnrolled) {
-		this.coursesEnrolled = coursesEnrolled;
-	}
-
-	public Map<Course, Double> getCoursesAndMarks() {
-		return coursesAndMarks;
-	}
-
-	public void setCoursesAndMarks(Map<Course, Double> coursesAndMarks) {
-		this.coursesAndMarks = coursesAndMarks;
-	}
-
 	@Override
 	public String toString() {
 		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", rollNo=" + rollNo + ", branchName="
 				+ branchName + ", dateOfBirth=" + dateOfBirth + ", registrationDate=" + registrationDate + ", imageUrl="
-				+ imageUrl + ", email=" + email + ", semester=" + semester + "]";
+				+ imageUrl + ", email=" + emailId + ", semester=" + currentSemester + "]";
 	}
 
 }

@@ -22,7 +22,7 @@ public class StudentServicesControllerTests {
 	@Test
 	public void testConnection() {
 		
-		conn = stuController.getConnection();
+	//	conn = stuController.getConnection();
 		
 		if (conn != null) {
 			System.out.println("Connection OK");
@@ -39,15 +39,15 @@ public class StudentServicesControllerTests {
 	
 	@Test
 	public void getStudentResultSet() {
-		List<Student> students = null;
-		conn = stuController.getConnection();
+		List<Students> students = null;
+//		conn = stuController.getConnection();
 		if (conn != null) {
 			students = stuController.getStudents();
 		}
 		
 		if(students != null && students.size() > 0) {
 			System.out.println("Found " + students.size() + " records");
-			for (Student s : students) {
+			for (Students s : students) {
 				System.out.println(s);
 			}
 		} else {
