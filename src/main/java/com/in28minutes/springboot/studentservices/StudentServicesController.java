@@ -51,6 +51,20 @@ public class StudentServicesController {
 
 	}
 
+	@GetMapping("/student/{rollNo}")
+	@ResponseBody
+	public ResponseEntity<String> getStudent(@PathVariable Integer rollNo) {
+	    Gson gson = new Gson();
+		Optional<Students> stu = studentRep.findById(rollNo); 
+		if(stu.isPresent()) {
+			String jsonOut = gson.toJson(stu.get());
+		    return ResponseEntity.status(HttpStatus.FOUND).body(jsonOut);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+
+	
 	@PostMapping("/student/{rollNo}")
 	public ResponseEntity<String> updateStudent(
 			@PathVariable Integer rollNo, @RequestBody Students newStudent) {
