@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -16,43 +17,10 @@ public class StudentServicesControllerTests {
 
 	@Autowired
 	private StudentServicesController stuController;
-    private Connection conn = null;
-	
-	
-	@Test
-	public void testConnection() {
-		
-	//	conn = stuController.getConnection();
-		
-		if (conn != null) {
-			System.out.println("Connection OK");
-		} else {
-			System.out.println("Connection Failed");
-		}
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+
 	@Test
 	public void getStudentResultSet() {
-		List<Students> students = null;
-//		conn = stuController.getConnection();
-		if (conn != null) {
-			students = stuController.getStudents();
-		}
-		
-		if(students != null && students.size() > 0) {
-			System.out.println("Found " + students.size() + " records");
-			for (Students s : students) {
-				System.out.println(s);
-			}
-		} else {
-			System.out.println("Failed to get students");
-		}
+		ResponseEntity<String> students = stuController.getStudents();
+		System.out.println(students.getBody().toString());
 	}
- 
 }

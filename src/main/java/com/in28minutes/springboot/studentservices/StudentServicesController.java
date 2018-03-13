@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 @Controller
 public class StudentServicesController {
@@ -37,11 +40,15 @@ public class StudentServicesController {
 
 	@GetMapping("/students")
 	@ResponseBody
-	public List<Students> getStudents() {
+	public ResponseEntity<String> getStudents() {
+	    Gson gson = new Gson();
+	
 		Iterable<Students> studentList = studentRep.findAll();
 		ArrayList<Students> returnList = new ArrayList<Students>();
 		studentList.forEach(returnList::add);
-		return returnList;
+	    String jsonList = gson.toJson(studentList);
+	    return ResponseEntity.status(HttpStatus.OK).body(jsonList);
+
 	}
 
 	@PostMapping("/student/{rollNo}")

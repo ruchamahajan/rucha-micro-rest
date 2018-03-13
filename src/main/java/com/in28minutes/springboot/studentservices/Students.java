@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Students {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer rollNo;
 	private String firstName;
 	private String lastName;
