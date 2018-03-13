@@ -1,15 +1,9 @@
 package com.in28minutes.springboot.studentservices;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +20,16 @@ public class StudentServicesController {
 	StudentService studentService;
 
 	
-    @PutMapping
+    @PutMapping("/student/")
     @ResponseBody
-    public Boolean addStudent(@RequestBody Student student) {
-    		return studentService.addStudent(student);
-    		 
+    public ResponseEntity<String> addStudent(@RequestBody Student newStudent) {
+    		Boolean status = studentService.addStudent(newStudent);
+    		
+    		if (status) {
+    			return ResponseEntity.status(HttpStatus.CREATED).build();
+    		} else {
+    			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    		}
     }
 	
 	@GetMapping("/students")
@@ -40,16 +39,28 @@ public class StudentServicesController {
 		return studentService.getStudents();
 	}
 	
-	@PostMapping("/student/rollNo") 
-	@ResponseBody
-	public Boolean updateStudent(@RequestBody Student student) {
-
-		return studentService.updateStudent(rollNo);
-	}
+	@PostMapping("/student/{rollNo}")
+	public ResponseEntity<String> updateStudent(
+			@PathVariable Integer rollNo, @RequestBody Student newStudent) {
+		
+		Boolean status = studentService.updateStudent(rollNo, newStudent);
+		if (status) {
+			return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+  	}
 	
-	@DeleteMapping("/student/rollNo")
-	public Boolean deleteStudent(@RequestBody Integer rollNo) {
-		return studentService.deleteStudent(rollNo);
+	@DeleteMapping("/student/{rollNo}")
+	public ResponseEntity<String> deleteStudent(@PathVariable Integer rollNo) {
+		Boolean status = studentService.deleteStudent(rollNo);
+		
+		if (status) {
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
 	}
 	
 }

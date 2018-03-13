@@ -50,7 +50,7 @@ public class StudentService {
 		return stu;
 	}
 	
-	Boolean updateStudent(Integer rollNo) {
+	Boolean updateStudent(Integer rollNo, Student newStudent) {
 		
 		return true;
 	}
